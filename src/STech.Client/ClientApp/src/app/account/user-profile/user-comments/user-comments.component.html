@@ -1,0 +1,63 @@
+<div class="row mt-2">
+  <div class="col-md-12">
+    <form>
+      <div class="input-group">
+        <input #search type="text" class="form-control" placeholder="Search In Comments">
+        <button (click)="searchComments()" class="form-control btn btn-primary"><i class="fas fa-search mr-1"></i> Search</button>
+        <a (click)="resetComments()" class="text-white form-control btn btn-primary dataLink"><i class="fas fa-redo-alt mr-1"></i> Reset</a>
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-12 my-2">
+    <div *ngIf="userComments.length > 0" class="container">
+      <div *ngFor="let comment of userComments" class="row mb-2 pt-2 border-top">
+        <div class="col-xs-2 col-md-1 col-lg-1 p-0">
+          <img src="assets/images/user-default-avatar.png" alt="{{comment.username}}" class="img-responsive img-thumbnail">
+        </div>
+
+        <div class="col-xs-10 col-md-11 col-lg-11">
+          <div class="mb-2">
+            <div class="mic-info">
+              {{comment.fullName}}
+              <span class="small text-muted mgl-auto">
+                {{comment.timestamp}}
+              </span>
+            </div>
+
+            <a routerLink="/shop/{{comment.product.id}}" class="text-primary">{{comment.product.name}}</a>
+          </div>
+
+          <div class="d-flex align-items-center mb-2">
+            <div class="mr-auto text-warning">
+              <i *ngFor="let i of [].constructor(comment.rating)" class="fas fa-star"></i>
+              <i *ngFor="let i of [].constructor(5 - comment.rating)" class="far fa-star"></i>
+            </div>
+
+            <div class="mgl-auto text-danger pointer-cursor">
+              <i (click)="deleteComment(comment.id)" class="fas fa-trash-alt"></i>
+            </div>
+          </div>
+
+          <div class="comment-text">
+            {{comment.text}}
+          </div>
+
+        </div>
+      </div>
+
+      <app-pager
+        *ngIf="totalCommentsCount > commentParams.pageSize"
+        [pageIndex]="commentParams.pageIndex"
+        [pageSize]="commentParams.pageSize"
+        [totalCount]="totalCommentsCount"
+        (pageChanged)="onPageChanged($event)"
+      >
+      </app-pager>
+    </div>
+
+    <div *ngIf="userComments.length === 0" class="alert alert-warning m-0" role="alert">
+      No comments found
+    </div>
+
+  </div>
+</div>

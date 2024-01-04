@@ -1,0 +1,59 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="menuSidebar" style="height: 100%">
+  <li class="sidebar-brand d-flex align-items-center justify-content-center">
+    <div class="sidebar-brand-icon">
+      <i class="fas fa-store"></i>
+    </div>
+    <div class="sidebar-brand-text mx-2">
+      STech
+    </div>
+  </li>
+  <hr class="sidebar-divider">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/">
+      <i class="mr-1 fas fa-home"></i>
+      <span>Home</span>
+    </a>
+  </li>
+  <li *ngIf="(currentUser$ | async) && (currentUser$ | async)?.roles?.includes('Administrator')" class="nav-item">
+    <a class="nav-link" [class.text-white]="activeTab === ''" routerLink="./">
+      <i class="fas fa-user-shield" [class.text-white]="activeTab === ''"></i>
+      <span>Dashboard</span>
+    </a>
+  </li>
+  <li *ngIf="(currentUser$ | async) && (currentUser$ | async)?.roles?.includes('Administrator')" class="nav-item">
+    <a class="nav-link active" [class.text-white]="activeTab === 'categories'" routerLink="categories">
+      <i class="mr-1 fas fa-sitemap" [class.text-white]="activeTab === 'categories'" ></i>
+      <span>Categories</span>
+    </a>
+  </li>
+  <li *ngIf="(currentUser$ | async) && (currentUser$ | async)?.roles?.includes('Administrator')" class="nav-item">
+    <a class="nav-link" [class.text-white]="activeTab === 'products'" routerLink="products">
+      <i class="fas fa-cubes mr-1" [class.text-white]="activeTab === 'products'"></i>
+      <span>Products</span>
+    </a>
+  </li>
+
+  <li *ngIf="(currentUser$ | async) && (currentUser$ | async)?.roles?.includes('Employee')" class="nav-item">
+    <a class="nav-link" [class.text-white]="activeTab === 'orders'" routerLink="orders">
+      <i class="fas fa-funnel-dollar mr-1" [class.text-white]="activeTab === 'orders'"></i>
+      <span>Orders</span>
+    </a>
+  </li>
+
+  <li *ngIf="(currentUser$ | async) && (currentUser$ | async)?.roles?.includes('Employee')" class="nav-item">
+    <a class="nav-link" [class.text-white]="activeTab === 'comments'" routerLink="comments">
+      <i class="mr-1 fas fa-comments" [class.text-white]="activeTab === 'comments'" ></i>
+      <span>Comments</span>
+    </a>
+  </li>
+
+  <li *ngIf="(currentUser$ | async) && (currentUser$ | async)?.roles?.includes('Administrator')" class="nav-item">
+    <a class="nav-link" [class.text-white]="activeTab === 'users'" routerLink="users">
+      <i class="mr-1 fas fa-users" [class.text-white]="activeTab === 'users'"></i>
+      <span [class.text-white]="activeTab === 'users'">Users</span>
+    </a>
+  </li>
+
+
+
+</ul>

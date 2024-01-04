@@ -1,0 +1,218 @@
+<!-- Breadcrumb -->
+<div *ngIf="product" class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text product-more">
+          <a routerLink="/">
+            <i class="fas fa-home mr-1"></i>
+            Home
+          </a>
+          <a *ngIf="product" routerLink="/shop">{{product.categoryName}}</a>
+          <span *ngIf="product">{{product.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section *ngIf="product" class="product-shop spad page-details">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div id="carouselIndicators" class="product-gallery-carousel carousel slide" data-bs-ride="carousel">
+          <ol *ngIf="product.pictureUrls.length > 1" class="carousel-indicators product-carousel-indicators">
+            <li *ngFor="let url of product.pictureUrls, index as i" [class.active]="i === 0" data-bs-target="#carouselIndicators" [attr.data-bs-slide-to]="i">
+              <div class="h-100 w-100 d-flex align-items-center justify-content-center">
+                <img src="{{url}}" alt="{{product.name}}">
+              </div>
+            </li>
+          </ol>
+
+          <div class="carousel-inner product-carousel-inner">
+            <div *ngFor="let url of product.pictureUrls, index as i" class="carousel-item" [class.active]="i === 0">
+              <div class="h-100 w-100 d-flex align-items-center justify-content-center">
+                <img src="{{url}}" alt="{{product.name}}">
+              </div>
+            </div>
+          </div>
+
+          <button *ngIf="product.pictureUrls.length > 1" class="carousel-control-prev product-carousel-prev" data-bs-target="#carouselIndicators" type="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button *ngIf="product.pictureUrls.length > 1" class="carousel-control-next product-carousel-next" data-bs-target="#carouselIndicators" type="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <!-- TODO: may have to create a carousel for products with no pictures -->
+
+
+      </div>
+
+      <div class="col-lg-6" id="productSummaryContainer">
+        <div class="product-details">
+          <div class="pd-title">
+            <a routerLink="/shop" [queryParams]="{ 'categoryName': product.categoryName }">
+              <span>
+                {{product.categoryName}}
+              </span>
+            </a>
+
+            <h2>
+              {{product.name}}
+            </h2>
+          </div>
+
+          <div class="pd-rating">
+            <span>
+              <i *ngFor="let i of [].constructor(product.ratings.averageRating)" class="fas fa-star"></i>
+              <i *ngFor="let i of [].constructor(5 - product.ratings.averageRating)" class="far fa-star"></i>
+            </span>
+          </div>
+
+          <div class="pd-desc">
+            <p>
+              {{product.description}}
+            </p>
+            <h4 title="Price" class="ltr-dir">
+              {{product.price | currency}}
+            </h4>
+          </div>
+
+          <div class="my-2">
+            <strong *ngIf="product.stockQuantity > 0" class="p-code text-success bold">
+              {{product.stockQuantity}} available in stock.
+            </strong>
+
+            <strong *ngIf="product.stockQuantity <= 0" class="p-code text-danger bold">
+              Out of stock.
+            </strong>
+          </div>
+
+          <div class="quantity itemCartHolder">
+            <div class="pro-qty">
+              <span (click)="decrementQuantity()" class="qtybtn dec">-</span>
+              <input class="qtytxt" type="text" value="{{quantity}}">
+              <span (click)="incrementQuantity()" class="qtybtn inc">+</span>
+            </div>
+            <a (click)="addItemToCart()" class="pointer-cursor primary-btn pd-cart text-white">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-tab">
+      <div class="tab-item">
+        <ul class="nav" role="tablist">
+          <li>
+            <a data-toggle="tab" role="tab" class="active">Reviews</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tab-item-content">
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="reviews-tab" role="tabpanel">
+            <div class="customer-review-option">
+              <div class="row comments-container">
+                <div *ngIf="comments" class="col-lg-8">
+                  <h4>{{commentsCount}} Comments</h4>
+                  <div class="col-container">
+                    <div class="comment-option">
+                      <div *ngIf="comments && comments.length > 0" class="container">
+                        <div *ngFor="let comment of comments" class="commentRow row mb-2 pb-2 border-bottom">
+                          <div class="col-xs-2 col-md-1 col-lg-1 p-0">
+                            <img src="assets/images/user.png" alt="{{comment.username}}" class="img-responsive img-thumbnail">
+                          </div>
+
+                          <div class="col-xs-10 col-md-11 col-lg-11">
+                            <div class="mb-2">
+                              <div class="mic-info d-flex align-items-center">
+                                {{comment.fullName}}
+                                <div class="small text-muted ltr-dir" style="margin-left: auto;">
+                                  {{comment.timestamp}}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                              <div class="mr-auto text-warning">
+                                <i *ngFor="let i of [].constructor(comment.rating)" class="fas fa-star"></i>
+                                <i *ngFor="let i of [].constructor(5 - comment.rating)" class="far fa-star"></i>
+                              </div>
+
+                              <ng-container *ngIf="(currentUser$ | async)?.token !== ''">
+                                <!-- Delete comment -->
+                                <div (click)="deleteComment(comment.commentID)" *ngIf="comment.username === (currentUser$ | async)?.username" class="text-danger pointer-cursor" style="margin-left: auto">
+                                  <i class="fas fa-trash-alt"></i>
+                                </div>
+                              </ng-container>
+                            </div>
+
+                            <div class="comment-text mt-2">
+                              {{comment.text}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="comments.length === 0" class="alert alert-secondary error-message" role="alert">
+                        There are no comments on this product. Be the first to comment on it.
+                      </div>
+
+                      <!-- Comments Pager -->
+                      <div *ngIf="commentsCount > 0">
+                        <app-pager
+                          *ngIf="commentsCount > commentParams.pageSize"
+                          [pageSize]="commentParams.pageSize"
+                          [pageIndex]="commentParams.pageIndex"
+                          [totalCount]="commentsCount"
+                          (pageChanged)="onCommentPageChanged($event)"
+                        >
+
+                        </app-pager>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4">
+                  <h4>Leave Comment</h4>
+
+                  <div class="col-container">
+                    <div class="leave-comment comment-input-container">
+                      <form *ngIf="(currentUser$ | async)?.token !== ''" id="commentForm" class="comment-form" [formGroup]="commentForm">
+                        <div class="personal-rating">
+                          <span>Your Rating</span>
+                          <div class="rating">
+                            <i *ngFor="let i of [].constructor(5), index as j" class="ratingStar fa-star" [ngClass]="{'fas': j < rating, 'far': j >= rating}" (click)="setRating(j + 1)"></i>
+                          </div>
+                          <span id="ratingDisplay">{{rating}}</span> Star
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <textarea formControlName="text" cols="30" rows="5" name="Text" placeholder="Write your comment."></textarea>
+                            <button (click)="leaveComment()" id="btnComment" type="button" class="site-btn">Leave Comment</button>
+                          </div>
+                        </div>
+                      </form>
+
+                      <!-- User unauthenticated -->
+                      <div *ngIf="(currentUser$ | async)?.token === ''" class="alert alert-info error-message" role="alert">
+                        You need to login to leave comments.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<div class="contact-container" [formGroup]="checkoutForm">
+  <h4>Contact Details</h4>
+
+  <!-- Contact Details-->
+  <form id="contactDetailsForm" formGroupName="contactForm">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input formControlName="fullName" type="text" class="form-control" placeholder="Full Name">
+      <div *ngIf="checkoutForm.get('contactForm.fullName')?.invalid && checkoutForm.get('contactForm.fullName')?.touched && checkoutForm.get('contactForm.fullName')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+        Full name is required
+      </div>
+    </div>
+
+    <div class="row mb-3 mt-2">
+      <div class="col pr-5">
+        <label>Email</label>
+        <input formControlName="email" type="email" class="form-control" placeholder="contact@email.com">
+        <div *ngIf="checkoutForm.get('contactForm.email')?.invalid && checkoutForm.get('contactForm.email')?.touched && checkoutForm.get('contactForm.email')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+          Email address is required
+        </div>
+
+        <div *ngIf="checkoutForm.get('contactForm.email')?.invalid && checkoutForm.get('contactForm.email')?.touched && checkoutForm.get('contactForm.email')?.errors?.['pattern']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+          Invalid email address
+        </div>
+      </div>
+
+      <div class="col pl-5">
+        <label>Phone Number</label>
+        <input formControlName="phoneNumber" type="tel" class="form-control ltr-dir" placeholder="+84 123456789">
+        <div *ngIf="checkoutForm.get('contactForm.phoneNumber')?.invalid && checkoutForm.get('contactForm.phoneNumber')?.touched && checkoutForm.get('contactForm.phoneNumber')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+          Phone number is required
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

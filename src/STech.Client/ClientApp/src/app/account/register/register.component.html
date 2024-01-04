@@ -1,0 +1,82 @@
+<div class="register-login-section spad">
+  <div class="container" id="register-container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="login-form page-content-holder">
+          <div class="page-content-header">
+            <h2>Register Account</h2>
+          </div>
+
+          <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="group-input">
+              <label for="FullName">Full Name <span class="text-danger">*</span></label>
+              <input formControlName="fullName" id="FullName" class="form-control" name="FullName" placeholder="Full Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'FullName'">
+
+              <div *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched && registerForm.get('fullName')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Full name is required
+              </div>
+            </div>
+            <div class="group-input">
+              <label for="Email">Email <span class="text-danger">*</span></label>
+              <input formControlName="email" id="Email" class="form-control" name="Email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+
+              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Email address is required
+              </div>
+
+              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['pattern']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Invalid email address
+              </div>
+
+              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.dirty && registerForm.get('email')?.errors?.['emailExists']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Email is already in use
+              </div>
+            </div>
+            <div class="group-input">
+              <label for="username">Username <span class="text-danger">*</span></label>
+              <input formControlName="username" id="username" class="form-control" name="Username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+
+              <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched && registerForm.get('username')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Username is required
+              </div>
+            </div>
+            <div class="group-input">
+              <label for="password">Password <span class="text-danger">*</span></label>
+              <input formControlName="password" id="password" type="password" class="form-control" name="Password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+
+              <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Password is required
+              </div>
+            </div>
+            <div class="group-input">
+              <label for="ConfirmPassword">Confirm Password <span class="text-danger">*</span></label>
+              <input formControlName="confirmPassword" id="ConfirmPassword" type="password" class="form-control" name="ConfirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+
+              <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Confirm Password is required
+              </div>
+
+              <div *ngIf="registerForm.get('confirmPassword')?.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Confirm Password must match Password
+              </div>
+            </div>
+
+            <div *ngIf="errors" class="group-input errorsRow">
+              <div *ngFor="let error of errors" class="alert alert-danger errorMessages mb-0" role="alert">
+                {{error}}
+              </div>
+            </div>
+
+            <button type="submit" id="registerButton" class="site-btn login-btn">Register Account</button>
+          </form>
+
+          <div class="switch-login">
+            <a routerLink="/account/login" class="or-login">
+              Or login with existing account
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

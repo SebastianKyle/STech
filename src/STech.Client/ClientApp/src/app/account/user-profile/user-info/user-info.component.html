@@ -1,0 +1,63 @@
+<form [formGroup]="userDetailsForm">
+ <div class="form-group row mb-3">
+   <label for="fullName" class="col-sm-3 col-form-label text-end">Full Name</label>
+   <div class="col-sm-9">
+     <input formControlName="fullName" id="fullName" type="text" class="form-control">
+   </div>
+ </div>
+
+  <div class="form-group row mb-3">
+    <label for="email" class="col-sm-3 col-form-label text-end">Email</label>
+    <div class="col-sm-9">
+      <input formControlName="email" id="email" type="text" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="username" class="col-sm-3 col-form-label text-end">Username</label>
+    <div class="col-sm-9">
+      <input formControlName="username" id="username" type="text" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="phoneNumber" class="col-sm-3 col-form-label text-end">Phone Number</label>
+    <div class="col-sm-9">
+      <input formControlName="phoneNumber" id="phoneNumber" type="text" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="country" class="col-sm-3 col-form-label text-end">Country</label>
+    <div class="col-sm-9">
+      <input formControlName="country" id="country" type="text" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="city" class="col-sm-3 col-form-label text-end">City</label>
+    <div class="col-sm-9">
+      <input formControlName="city" id="city" type="text" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="address" class="col-sm-3 col-form-label text-end">Address</label>
+    <div class="col-sm-9">
+      <textarea formControlName="address" id="address" type="text" class="form-control"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="zipCode" class="col-sm-3 col-form-label text-end">Zip Code</label>
+    <div class="col-sm-9">
+      <input formControlName="zipCode" id="zipCode" type="text" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="offset-sm-3 col-sm-9">
+      <button (click)="updateUserDetails()" class="btn btn-success"><i class="fas fa-edit mr-1"></i> Update Info</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,62 @@
+<div class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text product-more">
+          <a routerLink="/">
+            <i class="fas fa-home mr-1"></i>
+            Home
+          </a>
+          <span>Checkout</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="page-content-holder">
+          <div class="page-content-header">
+            <h2>Checkout</h2>
+            <p>
+              Checkout with your shopping cart products.
+            </p>
+          </div>
+          <div *ngIf="cart.cartItems.length > 0" id="checkout-holder">
+            <!-- Checkout partials -->
+            <section>
+              <div class="row checkout-form">
+                <div class="col-lg-8">
+                  <!-- Contact Details -->
+                  <app-checkout-contact-details [checkoutForm]="checkoutForm"></app-checkout-contact-details>
+
+                  <!-- Shipping Details -->
+                  <app-checkout-shipping-details [checkoutForm]="checkoutForm"></app-checkout-shipping-details>
+
+                  <!-- TODO: Delivery Details -->
+                  <app-checkout-delivery [checkoutForm]="checkoutForm"></app-checkout-delivery>
+
+                  <!-- Payment -->
+                  <app-checkout-payment [checkoutForm]="checkoutForm"></app-checkout-payment>
+                </div>
+
+                <!-- Order Review -->
+                <div class="col-lg-4">
+                  <app-checkout-review></app-checkout-review>
+                </div>
+
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="cart.cartItems.length === 0" class="alert alert-warning mb-0" role="alert">
+            No Products In Cart
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

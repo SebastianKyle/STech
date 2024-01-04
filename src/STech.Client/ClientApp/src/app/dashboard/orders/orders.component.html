@@ -1,0 +1,87 @@
+<div class="page-info-container">
+  <h3 class="h3 mb-2 text-gray-800">
+    Orders
+  </h3>
+  <p>
+    Orders Listing.
+  </p>
+  <hr />
+</div>
+
+<div class="page-data-holder card shadow mb-4">
+  <div class="card-header">
+    <form>
+    <div class="input-group">
+      <input #userEmailSearch type="text" class="form-control" placeholder="Search By User Email">
+      <input #orderIDSearch type="text" class="form-control" placeholder="Search By Order ID">
+      <select #orderStatusSearch class="form-control custom-select">
+        <option value="0">Search By Order Status</option>
+        <option *ngFor="let status of orderStatus" value="{{status.value}}">{{status.status}}</option>
+      </select>
+      <button (click)="onSearch()" type="submit" class="form-control btn btn-primary"><i class="fas fa-search"></i> Search</button>
+      <a (click)="onReset()" role="button" class="form-control btn btn-primary text-white"><i class="fas fa-redo-alt"></i> Reset</a>
+    </div>
+    </form>
+  </div>
+  <div class="card-body p-0" id="list-holder">
+    <table *ngIf="orders.length > 0" class="table table-hover table-responsive-sm m-0">
+      <thead class="thead-light">
+      <tr>
+        <th>Order ID</th>
+        <th>Placed On</th>
+        <th>Order Amount</th>
+        <th>Payment Method</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{order.id}}</td>
+
+          <td>{{order.placedOn}}</td>
+
+          <td>{{order.finalAmount | currency}}</td>
+
+          <td>{{order.paymentMethod}}</td>
+
+          <td [class]="getOrderStatusInstance(order.orderHistory.orderStatus)?.bgClass">
+            <span>{{getOrderStatusInstance(order.orderHistory.orderStatus)?.status}}</span>
+            <br/>
+            <div class="small">
+              Updated On: {{order.orderHistory.modifiedOn}}
+            </div>
+          </td>
+
+          <td>
+            <div class="btn-group" role="group">
+              <a class="btn btn-primary text-white" routerLink="edit/{{order.id}}">
+              <i class="fas fa-shopping-cart mr-1 text-white"></i>
+                Details
+              </a>
+              <a class="btn btn-warning" routerLink="../../checkout/track" [queryParams]="{orderID: order.id}">
+                <i class="fas fa-search-location mr-1"></i>
+                Track
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-container *ngIf="orders.length > 0">
+      <app-pager
+        *ngIf="totalOrdersCount > orderParams.pageSize"
+        [pageSize]="orderParams.pageSize"
+        [pageIndex]="orderParams.pageIndex"
+        [totalCount]="totalOrdersCount"
+        (pageChanged)="onPageChanged($event)"
+      >
+      </app-pager>
+    </ng-container>
+
+    <div *ngIf="orders.length === 0" class="alert alert-warning rounded-0 m-0" role="alert">
+      No Orders Found.
+    </div>
+  </div>
+</div>

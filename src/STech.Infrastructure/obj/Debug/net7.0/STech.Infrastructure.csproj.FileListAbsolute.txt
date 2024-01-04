@@ -1,0 +1,17 @@
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\bin\Debug\net7.0\STech.Infrastructure.deps.json
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\bin\Debug\net7.0\STech.Infrastructure.dll
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\bin\Debug\net7.0\STech.Infrastructure.pdb
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\bin\Debug\net7.0\STech.Core.dll
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\bin\Debug\net7.0\STech.Core.pdb
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.csproj.AssemblyReference.cache
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.AssemblyInfoInputs.cache
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.AssemblyInfo.cs
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.csproj.CoreCompileInputs.cache
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.csproj.CopyComplete
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.dll
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\refint\STech.Infrastructure.dll
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.pdb
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\ref\STech.Infrastructure.dll
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\bin\Debug\net7.0\STech.Infrastructure.runtimeconfig.json
+D:\University\NMCNPM\SourceCode\STech\STech.Infrastructure\obj\Debug\net7.0\STech.Infrastructure.genruntimeconfig.cache

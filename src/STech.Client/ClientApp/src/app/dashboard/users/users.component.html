@@ -1,0 +1,94 @@
+<div class="page-info-container">
+  <h3 class="h3 mb-2 text-gray-800">
+    Users
+  </h3>
+  <p>
+    Users Listing.
+  </p>
+  <hr />
+</div>
+
+<div class="page-data-holder card shadow mb-4">
+  <div class="card-header">
+    <form>
+    <div class="input-group">
+      <input #usernameEmailSearch type="text" class="form-control" placeholder="Search by Name or Email">
+      <select *ngIf="roles.length > 0" #userRoleSearch class="form-control custom-select">
+        <option value="">
+          Select by Role
+        </option>
+        <option *ngFor="let role of roles" value="{{role}}">{{role}}</option>
+      </select>
+
+      <button (click)="onSearch()" type="submit" class="form-control btn btn-primary"><i class="fas fa-search"></i> Search</button>
+      <a (click)="onReset()" role="button" class="form-control btn btn-primary text-white"><i class="fas fa-redo-alt"></i> Reset</a>
+    </div>
+    </form>
+  </div>
+  <div class="card-body p-0" id="list-holder">
+    <table *ngIf="users.length > 0" class="table table-hover table-responsive-sm m-0">
+      <thead class="thead-light">
+      <tr>
+        <th>
+          Registered On
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Username
+        </th>
+        <th>
+          Email
+        </th>
+        <th>
+          Roles
+        </th>
+        <th>
+          Actions
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+          <td>
+              {{user.registeredOn}}
+          </td>
+          <td>
+              {{user.fullName}}
+          </td>
+          <td>
+              {{user.userName}}
+          </td>
+          <td>
+              {{user.email}}
+          </td>
+          <td>
+              {{user.roles.length}}
+          </td>
+          <td>
+              <a class="moreButton btn btn-primary text-white" routerLink="{{user.id}}">
+                  <i class="fas fa-user mr-1"></i>
+                  More Details
+              </a>
+          </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <ng-container *ngIf="users.length > 0">
+      <app-pager
+        *ngIf="totalUsersCount > userParams.pageSize"
+        [pageIndex]="userParams.pageSize"
+        [pageSize]="userParams.pageSize"
+        [totalCount]="totalUsersCount"
+        (pageChanged)="onPageChanged($event)"
+      >
+      </app-pager>
+    </ng-container>
+
+    <div *ngIf="users.length === 0" class="alert alert-warning rounded-0 m-0" role="alert">
+      No Users Found
+    </div>
+  </div>
+</div>

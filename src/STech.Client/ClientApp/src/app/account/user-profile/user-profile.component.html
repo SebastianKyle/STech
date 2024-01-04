@@ -1,0 +1,54 @@
+<div class="spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="page-content-header">
+          <h2>User Details</h2>
+          <p>Review your profile and related data.</p>
+        </div>
+
+        <div *ngIf="userDetails" id="profile-holder">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="card">
+                  <img src="assets/images/user-default-avatar.png" alt="User Image" class="card-img-top" style="width: 100%;">
+                  <div class="card-body">
+                    <h5 class="card-title m-0">
+                      {{userDetails.fullName}}
+                    </h5>
+                  </div>
+
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" title="{{userDetails.userName}}">
+                      <i class="fas fa-user-alt mr-1"></i>
+                      {{userDetails.userName}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-lg-9">
+                <div class="card">
+                  <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                      <a routerLink="/account/profile/info" class="user-link nav-link pointer-cursor text-black" [class.active]="activeTab === 'info'">Info</a>
+                      <a routerLink="/account/profile/orders" class="user-link nav-link pointer-cursor text-black" [class.active]="activeTab === 'orders'">Orders</a>
+                      <a routerLink="/account/profile/comments" class="user-link nav-link pointer-cursor text-black" [class.active]="activeTab === 'comments'">Comments</a>
+                    </ul>
+                  </div>
+
+                  <div class="card-body">
+                    <div class="response-holder" style="min-height: 200px;">
+                      <router-outlet></router-outlet>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

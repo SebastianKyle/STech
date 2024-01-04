@@ -1,0 +1,70 @@
+<div *ngIf="action" class="page-info-container">
+  <h3 class="h3 mb-2 text-gray-800">
+    {{action}} Category
+  </h3>
+
+  <p>{{action}} Category.</p>
+
+  <hr />
+</div>
+
+<div class="page-data-holder mb-4">
+  <form [formGroup]="categoryForm">
+    <div class="card mt-3">
+      <div class="card-body">
+        <div class="form-group">
+          <label>Name</label>
+          <input #categoryName formControlName="name" type="text" class="form-control" placeholder="Category Name">
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea #categoryDescription formControlName="description" type="text" rows="6" class="form-control" placeholder="Category Description"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-body">
+        <div class="form-group">
+          <label>Parent Category</label>
+          <select *ngIf="topLevelCategories.length > 0" #parentCategorySelect class="form-control form-select">
+            <option [selected]="!currentCategory || !currentCategory.parentCategory" value="0">None</option>
+            <option *ngFor="let category of topLevelCategories" value="{{category.id}}" [selected]="currentCategory && currentCategory.parentCategoryID && currentCategory.parentCategoryID === category.id">{{category.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="pics-container">
+          <label>Select Picture</label>
+          <input (change)="handlePictureInput($event)" formControlName="picture" id="categoryPic" type="file" id="categoryPicture" class="form-control" accept-language="en" placeholder="Choose File">
+          <div id="pictureArea" class="pt-2">
+            <img #categoryImage [src]="currentCategory && currentCategory.pictureID ? currentCategory.picture.url : 'assets/images/default-picture.png'" class="image img-thumbnail" style="height: 433px; width: 380px; border: 1px solid #efefef;"/>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="form-group mb-0">
+          <button *ngIf="action === 'Edit'" (click)="updateCategory()" class="btn btn-success mr-2">
+            <i class="fas fa-edit mr-1"></i>
+            Update
+          </button>
+          <button *ngIf="action === 'Edit'" (click)="deleteCategory()" class="btn btn-danger mr-2">
+            <i class="fas fa-trash-alt mr-1"></i>
+            Delete
+          </button>
+
+          <button *ngIf="action === 'Create'" (click)="createCategory()" class="btn btn-success mr-2">
+            <i class="fas fa-plus mr-1"></i>
+            Save
+          </button>
+
+          <button class="btn btn-secondary mr-2" [routerLink]="action === 'Edit' ? '../..' : '..'">
+            <i class="fas fa-angle-double-left mr-1"></i>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

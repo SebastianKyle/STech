@@ -1,0 +1,174 @@
+<header class="header-section">
+  <div class="header-top">
+    <div class="container">
+      <div class="ht-left">
+        <div class="mail-service">
+          <i class="fas fa-envelope"></i>
+          <a class="text-dark no-underline">contact@email.com</a>
+        </div>
+
+        <div class="phone-service">
+          <i class="fas fa-phone"></i>
+          <a class="text-dark no-underline">0123456789</a>
+        </div>
+      </div>
+
+      <div class="ht-right">
+
+        <div *ngIf="(currentUser$ | async) && (currentUser$ | async)?.token !== ''" class="login-panel login-panel-last">
+          <a>
+            <i (click)="logout()" class="fas fa-sign-out-alt pointer-cursor"></i>
+          </a>
+        </div>
+
+        <!-- For Admin and Employee -->
+        <div *ngIf="(currentUser$ | async) && ((currentUser$ | async)?.roles?.includes('Administrator') || (currentUser$ | async)?.roles?.includes('Employee'))" class="login-panel">
+          <a [routerLink]="(currentUser$ | async)?.roles?.includes('Administrator') ? 'dashboard' : 'dashboard/orders'">
+            <i class="fas fa-user-shield"></i>
+          </a>
+        </div>
+
+        <div *ngIf="(currentUser$ | async) && (currentUser$ | async)?.token !== ''" class="login-panel">
+          <a routerLink="account/profile/info">
+            <img src="assets/images/user.png" alt="{{(currentUser$ | async)?.username}}" style="width: 20px; height: 20px; margin-bottom: 5px" class="image rounded-circle">
+          </a>
+        </div>
+
+        <div *ngIf="!(currentUser$ | async) || (currentUser$ | async)?.token === ''" class="login-panel login-panel-last">
+          <a>
+            <i routerLink="/account/login" class="fas fa-user pointer-cursor"></i>
+          </a>
+        </div>
+
+        <div class="top-social">
+          <a title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="inner-header">
+      <div class="row">
+        <div class="col-lg-3 col-md-3">
+          <div class="logo">
+            <a>
+              <h3>STech</h3>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+          <form class="advanced-search">
+            <div class="input-group">
+              <input #search name="search" type="text" placeholder="What are you looking for ?"/>
+              <button (click)="onSearch()">
+                <i class="fas fa-search"></i> <!-- TODO: advanced search at home page -->
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div (mouseenter)="fetchCartItems()" (mouseleave)="stopFetchingCartItems()" id="cart-info"
+             class="col-lg-3 col-md-3">
+          <ul class="nav-right">
+            <li class="cart-icon cartMenu">
+              <span class="pointerCursor">
+                <a>
+                    <i class="fas fa-shopping-cart"></i>
+                    <span *ngIf="(cart$ | async) as cart" class="countholder">{{cart.cartItems.length}}</span>
+                </a>
+                <span class="cart-price ltr-dir" dir="ltr"></span>
+              </span>
+              <div class="cart-hover">
+                <div class="cart-items-modal">
+                  <div [hidden]="!(cart.cartItems.length > 0)" class="select-items" style="display: none;">
+                    <table>
+                      <tbody>
+                      <tr *ngFor="let item of cart.cartItems">
+                        <td class="si-pic">
+                          <img src="{{item.pictureUrl}}" alt="{{item.productName}}">
+                        </td>
+                        <td class="si-text">
+                          <div class="product-selected">
+                            <p class="ltr-dir">{{item.price | currency}} x {{item.quantity}}</p>
+                            <a routerLink="/shop/{{item.id}}">
+                              <h6>
+                                {{item.productName}}
+                              </h6>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div [hidden]="!(cart.cartItems.length > 0)" class="select-total" style="display: none;">
+                    <span>Cart Total:</span>
+                    <h5 *ngIf="(cartTotal$ | async) as cartTotal" class="ltr-dir">{{cartTotal.total | currency}}</h5>
+                  </div>
+                  <div [hidden]="!(cart.cartItems.length > 0)" class="select-button" style="display: none">
+                    <a routerLink="/cart" class="primary-btn view-card">Cart Details</a>
+                    <a routerLink="/checkout" class="primary-btn checkout-btn">Checkout</a>
+                  </div>
+
+                  <div [hidden]="!(cart.cartItems.length === 0)" id="no-products" class="select-items" style="display: none">
+                    <div class="alert alert-warning mb-0" role="alert">
+                      No products in cart.
+                    </div>
+                  </div>
+
+                </div>
+                <div class="d-flex justify-content-center">
+                  <div class="spinner-border my-5 bloader" role="status" style="display:none">
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <div class="container">
+      <div class="nav-depart">
+        <div class="depart-btn">
+          <i class="fa fa-bars"></i>
+          <span>Categories</span>
+          <ul class="depart-hover">
+            <li *ngFor="let categoryWithChilren of categoriesWithChildren">
+              <a routerLink="/shop" [queryParams]="{categoryID: categoryWithChilren.category.id}" class="no-underline">
+                {{categoryWithChilren.category.name}}
+                <i class="fas fa-angle-double-right ml-1 text-black-50"
+                   *ngIf="categoryWithChilren.children != null && categoryWithChilren.children.length > 0"></i>
+              </a>
+
+              <ul class="sub-menu"
+                  *ngIf="categoryWithChilren.children != null && categoryWithChilren.children.length > 0">
+                <li *ngFor="let childCategory of categoryWithChilren.children">
+                  <a routerLink="/shop" [queryParams]="{categoryID: childCategory.id}">{{childCategory.name}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <nav class="nav-menu mobile-menu">
+        <ul>
+          <li><a routerLink="/">HOME</a></li>
+          <li><a routerLink="/shop">PRODUCTS</a></li>
+          <li><a routerLink="/checkout/track">TRACKING</a></li>
+          <li><a routerLink="/cart">CART</a></li>
+          <li><a routerLink="/checkout">CHECKOUT</a></li>
+        </ul>
+      </nav>
+
+      <div id="mobile-menu-wrap"></div>
+    </div>
+  </div>
+</header>

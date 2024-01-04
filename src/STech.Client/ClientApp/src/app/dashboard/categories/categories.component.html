@@ -1,0 +1,87 @@
+<div class="page-info-container">
+  <h3 class="h3 mb-2 text-gray-800">
+    Categories
+  </h3>
+  <p>
+    Categories Listing
+  </p>
+  <hr />
+</div>
+
+<div class="page-data-holder card shadow mb-4">
+  <div class="card-header">
+    <div class="input-group">
+      <input #categoryNameSearch name="searchTerm" type="text" class="form-control" placeholder="Search By Category ID">
+
+      <button (click)="onCategoryNameSearch()" type="submit" class="form-control btn btn-primary"><i class="fas fa-search"></i>Search</button>
+      <a (click)="onReset()" role="button" class="form-control btn btn-primary text-white"><i class="fas fa-redo-alt"></i> Reset</a>
+      <a routerLink="create" role="button" class="form-control btn btn-success text-white"><i class="fas fa-plus"></i> Create Category</a>
+    </div>
+  </div>
+  <div class="card-body p-0" id="list-holder">
+    <table *ngIf="categories.length > 0" class="table table-hover table-responsive-sm m-0">
+      <thead class="thead-light">
+        <tr>
+          <th>Name</th>
+          <th>Parent Category</th>
+          <th class="col-5">Description</th>
+          <th>Products</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>
+            <i class="text-warning fas fa-star m-1"></i>
+            <a routerLink="/shop" [queryParams]="{categoryID: category.id}">
+              {{category.name}}
+            </a>
+          </td>
+
+          <td>
+            <span *ngIf="category.parentCategory">{{category.parentCategory.name}}</span>
+            <span *ngIf="!category.parentCategory">-</span>
+          </td>
+
+          <td>
+            <span *ngIf="category.description">{{category.description}}</span>
+            <span *ngIf="!category.description">-</span>
+          </td>
+
+          <td>
+            <a routerLink="/shop" [queryParams]="{categoryID: category.id}" class="link">{{category.products === null ? 0 : category.products.length}}</a>
+          </td>
+
+          <td>
+            <div class="btn-group" role="group">
+              <a class="btn btn-primary" routerLink="edit/{{category.id}}">
+                <i class="fas fa-edit mr-1"></i>
+                Edit
+              </a>
+              <button (click)="deleteCategory(category.id)" class="btn btn-danger">
+                <i class="fas fa-trash-alt mr-1"></i>
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-container *ngIf="categories.length > 0">
+      <app-pager
+        *ngIf="totalCategoriesCount > categoryParams.pageSize"
+        [pageIndex]="categoryParams.pageIndex"
+        [pageSize]="categoryParams.pageSize"
+        [totalCount]="totalCategoriesCount"
+        (pageChanged)="onPageChanged($event)"
+      >
+      </app-pager>
+    </ng-container>
+
+    <div *ngIf="categories.length === 0" class="alert alert-warning rounded-0 m-0" role="alert">
+      No categories found.
+    </div>
+  </div>
+</div>

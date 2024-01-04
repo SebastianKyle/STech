@@ -1,0 +1,40 @@
+<div class="shipping-container" [formGroup]="checkoutForm">
+  <h4>Shipping Details</h4>
+  <form id="shippingDetailsForm" formGroupName="shippingForm">
+    <div class="row mb-3">
+      <div class="col pr-5">
+        <label>Country</label>
+        <input formControlName="country" type="text" class="form-control" placeholder="Country">
+        <div *ngIf="checkoutForm.get('shippingForm.country')?.invalid && checkoutForm.get('shippingForm.country')?.touched && checkoutForm.get('shippingForm.country')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+          Country is required
+        </div>
+      </div>
+
+      <div class="col pl-5">
+        <label>City</label>
+        <input formControlName="city" type="text" class="form-control" placeholder="City">
+        <div *ngIf="checkoutForm.get('shippingForm.city')?.invalid && checkoutForm.get('shippingForm.city')?.touched && checkoutForm.get('shippingForm.city')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+          City is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col pr-5">
+        <label>Address</label>
+        <textarea formControlName="address" class="form-control" placeholder="Address" style="border: 2px solid #ebebeb;"></textarea>
+        <div *ngIf="checkoutForm.get('shippingForm.address')?.invalid && checkoutForm.get('shippingForm.address')?.touched && checkoutForm.get('shippingForm.address')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+          Address is required
+        </div>
+      </div>
+
+      <div class="col pl-5">
+        <label>ZipCode</label>
+        <input formControlName="zipCode" type="text" class="form-control" placeholder="ZipCode">
+        <div *ngIf="checkoutForm.get('shippingForm.zipCode')?.invalid && checkoutForm.get('shippingForm.zipCode')?.touched && checkoutForm.get('shippingForm.zipCode')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+          ZipCode is required
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

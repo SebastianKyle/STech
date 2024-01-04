@@ -1,0 +1,139 @@
+<div class="biling-container" [formGroup]="checkoutForm">
+  <h4>Payment</h4>
+
+  <!-- Payment Details -->
+  <div class="accordion" id="paymentOptions">
+    <!-- Credit Card Payment-->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="mb-0">
+          <span (click)="createPaymentIntent()" class="btn btn-link collapsed no-underline" data-bs-toggle="collapse" data-bs-target="#creditCardsContainer" aria-expanded="false">
+            Pay Via Credit Card
+          </span>
+          <i class="fas fa-credit-card text-success"></i>
+        </h2>
+      </div>
+
+      <div id="creditCardsContainer" class="collapse" data-bs-parent="#paymentOptions">
+        <div class="card-body">
+          <!-- Demo purpose -->
+          <div class="alert alert-warning my-2 rounded-0" role="alert">
+            You are browsing DEMO website. Use the following Card Information to Place order for testing purposes. Orders will not be delivered.
+            <br />
+            <br />
+            Card Holder Name: Test Man
+            <br />
+            Card Number: 4111 1111 1111 1111
+            <br />
+            Card Expiry: 11/24
+            <br />
+            CVC: 123
+          </div>
+
+          <form id="creditCardForm" class="form" role="form" autocomplete="off" formGroupName="creditCardForm">
+            <div class="form-group">
+              <label for="CCName">
+                Card Holder Name
+              </label>
+              <input formControlName="cardHolderName" type="text" class="form-control" id="CCName">
+              <div *ngIf="checkoutForm.get('creditCardForm.cardHolderName')?.invalid && checkoutForm.get('creditCardForm.cardHolderName')?.touched && checkoutForm.get('creditCardForm.cardHolderName')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Card Holder Name is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="CCCardNumber">
+                Card Number
+              </label>
+              <div class="row cardnum-container">
+                <div class="col-12">
+                  <div #cardNumber type="text" class="form-control cardnum" id="CCCardNumber" autocomplete="off" style="border: 2px solid #ebebeb; height:46px;"></div>
+                  <ng-container *ngIf="cardErrors">
+                    <div class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                      {{cardErrors}}
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="card-number-errors"></div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-12">Card Expiry Date</label>
+
+              <div class="col-md-8">
+                <div #cardExpiry class="form-control" style="border: 2px solid #ebebeb; height:46px;"></div>
+              </div>
+
+              <div class="col-md-4">
+                <div #cardCvc type="text" class="form-control" style="border: 2px solid #ebebeb; height:46px;" name="CCCVC" id="CCCVC" autocomplete="off" maxlength="3" placeholder="Card CVC"></div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group row">
+              <label class="col-md-12">
+                <div class="small">
+                  <i class="fas fa-info-circle mr-1"></i>
+                  Card Info Not Saved
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group row mb-0">
+              <div class="col-md-12">
+                <button [disabled]="loading" (click)="submitCreditCardOrder()" type="button" class="bd-r-5 site-btn place-btn btn-group-lg w-100">
+                  Card Pay Now
+                  <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cash on Delivery -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#cashOnDeliveryContainer" aria-expanded="false">
+            Pay Via Cash On Delivery
+          </button>
+          <i class="fas fa-wallet text-info"></i>
+        </h2>
+      </div>
+      <div id="cashOnDeliveryContainer" class="collapse" data-bs-parent="#paymentOptions" style="">
+        <div class="card-body">
+          <button (click)="submitCashOnDeliveryOrder()" type="button" id="submitCashOnDelivery" class="bd-r-5 site-btn place-btn btn-lg w-100">
+            Place Order
+            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paypal payment (not yet finished) -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#paypalContainer" aria-expanded="false">
+            Pay Via Pay Pal
+          </button>
+          <i class="fab fa-paypal text-primary"></i>
+        </h2>
+      </div>
+      <div id="paypalContainer" class="collapse" data-bs-parent="#paymentOptions" style="">
+        <div class="card-body">
+          <div class="paypal-payment-info alert alert-success" role="alert">
+            Pay Pal Amount Note
+          </div>
+          <div id="paypalHolder"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

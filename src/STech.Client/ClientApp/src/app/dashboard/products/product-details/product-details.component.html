@@ -1,0 +1,109 @@
+<div class="page-info-container">
+  <h3 class="h3 mb-2 text-gray-800">
+    {{action}} Product
+  </h3>
+  <p>
+    {{action}} Product.
+  </p>
+  <hr />
+</div>
+
+<div class="page-data-holder mb-4">
+  <form [formGroup]="productForm">
+    <div class="card mt-3">
+      <div class="card-body">
+        <div class="form-group">
+          <label>Name</label>
+          <input #productName formControlName="name" type="text" class="form-control" placeholder="Product Name">
+          <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched && productForm.get('name')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+            Product Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea #productDescription formControlName="description" class="form-control" id="Summary" name="Summary" placeholder="Product Description" rows="6"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-body">
+        <div class="form-group">
+          <label>Category</label>
+          <select *ngIf="categories.length > 0" #productCategory class="form-control form-select">
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Price</label>
+          <div class="input-group">
+            <input #productPrice formControlName="price" type="text" class="form-control" placeholder="0">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+          </div>
+
+          <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched && productForm.get('price')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+            Product Price is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Cost</label>
+          <div class="input-group">
+            <input #productCost formControlName="cost" type="text" class="form-control" placeholder="0">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+          </div>
+
+          <div *ngIf="productForm.get('cost')?.invalid && productForm.get('cost')?.touched && productForm.get('cost')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+            Product Cost is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Stock Quantity</label>
+          <input #productStockQuantity formControlName="stockQuantity" type="number" class="form-control" placeholder="0">
+          <div *ngIf="productForm.get('stockQuantity')?.invalid && productForm.get('stockQuantity')?.touched && productForm.get('stockQuantity')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+            Product Stock Quantity is required
+          </div>
+        </div>
+
+        <div class="form-group" id="pics-container">
+          <label>Select Pictures</label>
+          <input (change)="handlePicturesInput($event)" #productPictures type="file" class="form-control" multiple />
+          <div #picturesHolder class="row pb-2">
+            <!-- Render Product Pictures -->
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="form-group mb-0">
+          <button *ngIf="action === 'Edit'" (click)="updateProduct()" class="btn btn-success mr-2" id="actionButton">
+            <i class="fas fa-edit mr-1"></i>
+            Update
+          </button>
+
+          <button *ngIf="action === 'Edit'" (click)="deleteProduct()" class="deleteButton btn btn-danger mr-2" data-id="@Model.ProductID">
+            <i class="fas fa-trash-alt mr-1"></i>
+            Delete
+          </button>
+
+          <button *ngIf="action === 'Create'" (click)="createProduct()" class="btn btn-success mr-2">
+            <i class="fas fa-plus mr-1"></i>
+            Save
+          </button>
+
+          <a class="btn btn-secondary mr-2" [routerLink]="action === 'Edit' ? '../..' : '..'">
+            <i class="fas fa-angle-double-left mr-1"></i>
+            Cancel
+          </a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

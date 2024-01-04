@@ -1,0 +1,136 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.home-slider-carousel {
+  overflow: hidden;
+  position: relative;
+  background: #efefef;
+  display: flex;
+}
+
+.home-carousel-indicators {
+  bottom: 10px;
+}
+
+.home-carousel-inner {
+  width: 100%;
+  position: relative;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.txt-wt {
+  color: #FFFFFF !important;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.cart-toast {
+  background-color: #5cb85c;
+  color: white;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.cart-toast:before {
+  content: url('./assets/images/cart.png');
+  margin-right: 10px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.card-header {
+  border-bottom: none;
+}
+
+.card {
+  border-radius: 0;
+}
+
+.card:first-child {
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+}
+
+.card:last-child {
+  border-bottom-left-radius: calc(.25rem - 1px);
+  border-bottom-right-radius: calc(.25rem - 1px);
+}
+
+.bd-r-5 {
+  border-radius: 5px;
+}
+
+.StripeElement {
+  height: 32px !important;
+}
+
+.cart-swal {
+  padding: 7px !important;
+  width: 240px !important;
+}
+
+.ngx-spinner .ngx-spinner-icon {
+  transition: opacity 0.05s ease-in-out;
+}
+
+.mgl-auto {
+  margin-left: auto;
+}
+
+.txt-right {
+  text-align: end;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}

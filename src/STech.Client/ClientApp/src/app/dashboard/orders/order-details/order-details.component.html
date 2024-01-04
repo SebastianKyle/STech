@@ -1,0 +1,212 @@
+<div class="page-info-container">
+  <h3 class="h3 mb-2 text-gray-800">
+    Order
+  </h3>
+  <p>
+    Order Details.
+  </p>
+</div>
+
+<div *ngIf="currentOrder" class="page-data-holder mb-4">
+  <div class="card">
+    <div class="list-group list-group-flush">
+      <li class="list-group-item bg-light lead">Order Status</li>
+      <li class="list-group-item p-0">
+        <table class="table table-borderless table-hover text-center mb-0">
+          <tbody>
+            <tr>
+              <td style="width: 50%">Order Status</td>
+              <td style="width: 50%">
+                <h4 class="m-0">
+                  <span class="badge badge-secondary" [class]="getOrderStatusValue(currentOrder.orderHistory.orderStatus)?.bgClass">
+                    {{getOrderStatusValue(currentOrder.orderHistory.orderStatus)?.status}}
+                  </span>
+                </h4>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="width: 50%">Payment Method</td>
+              <td>{{currentOrder.paymentMethod}}</td>
+            </tr>
+
+          <tr>
+            <td style="width: 50%;">Placed On</td>
+            <td style="width: 50%">{{currentOrder.placedOn}}</td>
+          </tr>
+
+          <tr>
+            <td style="width: 50%;">Updated On</td>
+            <td style="width: 50%;">{{currentOrder.orderHistory.modifiedOn}}</td>
+          </tr>
+
+          <tr>
+            <td style="width: 50%;">Order ID</td>
+            <td style="width: 50%;">{{currentOrder.id}}</td>
+          </tr>
+
+          </tbody>
+        </table>
+      </li>
+
+      <li class="list-group-item bg-light lead">Order Details</li>
+      <li class="list-group-item p-0">
+        <table class="table table-hover m-0">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of currentOrder.orderItems, index as i">
+              <td scope="row">{{i + 1}}</td>
+              <td>
+                <a routerLink="../../../../shop/{{item.productID}}" class="text-primary">{{item.productName}}</a>
+              </td>
+              <td>{{item.price | currency}}</td>
+              <td>{{item.quantity}}</td>
+              <td>{{item.price * item.quantity | currency}}</td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td colspan="4" class="txt-right">
+                <strong>Sub Total</strong>
+              </td>
+              <td colspan="1">
+                <span>{{currentOrder.totalAmount | currency}}</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="4" class="txt-right">
+                <strong>Delivery Charges</strong>
+              </td>
+              <td colspan="1">
+                <span>{{currentOrder.shippingPrice | currency}}</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="4" class="txt-right">
+                <strong>Final Total</strong>
+              </td>
+              <td colspan="1">
+                <span>{{currentOrder.finalAmount | currency}}</span>
+              </td>
+            </tr>
+
+          </tfoot>
+        </table>
+      </li>
+
+      <li class="list-group-item bg-light lead">Customer Details</li>
+
+      <li class="list-group-item">
+        <form>
+          <div class="form-group row mb-3">
+            <div class="small col-sm-12 col-form-label text-left">
+              <a routerLink="../.." [queryParams]="{customerEmail: currentOrder.customerEmail}" target="_blank">See all orders from this customer</a>
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label text-right">Full Name</label>
+            <div class="col-sm-10">
+              <input name="FullName" type="text" class="form-control disabled" value="{{currentOrder.customerName}}" disabled>
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label text-right">Email</label>
+            <div class="col-sm-10 text-left">
+              <input name="Email" type="email" class="form-control disabled" value="{{currentOrder.customerEmail}}" disabled>
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label text-right">Phone Number</label>
+            <div class="col-sm-10">
+              <input name="PhoneNumber" type="text" class="form-control disabled" value="{{currentOrder.customerPhone}}" disabled>
+            </div>
+          </div>
+        </form>
+      </li>
+
+      <li class="list-group-item bg-light lead">Shipping Details</li>
+
+      <li class="list-group-item">
+        <form>
+          <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label txt-right">Country</label>
+            <div class="col-sm-10">
+              <input name="Country" type="text" value="{{currentOrder.customerCountry}}" class="form-control disabled" disabled>
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label txt-right">City</label>
+            <div class="col-sm-10">
+              <input name="City" type="text" value="{{currentOrder.customerCity}}" class="form-control disabled" disabled>
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label txt-right">Address</label>
+            <div class="col-sm-10">
+              <textarea name="Address" class="form-control disabled" disabled>{{currentOrder.customerAddress}}</textarea>
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-sm-2 col-form-label text-right">Zip Code</label>
+            <div class="col-sm-10">
+              <input name="ZipCode" type="text" value="{{currentOrder.customerZipCode}}" class="form-control disabled" disabled>
+            </div>
+          </div>
+        </form>
+      </li>
+
+      <li *ngIf="orderHistories.length > 0" class="list-group-item bg-light lead">
+        Order Histories
+      </li>
+
+      <li *ngIf="orderHistories.length > 0" class="list-group-item">
+        <div class="row text-left">
+          <div class="col col-md-6 border-right">
+            <blockquote *ngFor="let orderHistory of orderHistories" class="blockquote">
+                <p>
+                    <span class="badge badge-secondary" [class]="getOrderStatusValue(orderHistory.orderStatus)?.bgClass" style="font-size: medium">
+                        {{getOrderStatusValue(orderHistory.orderStatus)?.status}}
+                    </span>
+                    - {{orderHistory.note}}
+                </p>
+                <footer class="blockquote-footer" style="font-size: medium;">{{orderHistory.modifiedOn}}</footer>
+            </blockquote>
+            <hr />
+          </div>
+          <div class="col col-md-6">
+            <form [formGroup]="orderHistoryForm">
+              <div class="form-group">
+                <label>Order Status</label>
+                <select formControlName="orderStatus" class="form-control form-select" name="OrderStatus">
+                  <option *ngFor="let status of orderStatus" value="{{status.value}}">
+                      {{status.status}}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Note</label>
+                <textarea formControlName="note" class="form-control" name="Note" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <button (click)="updateOrderStatus()" type="button" class="btn btn-primary">Update Status</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </li>
+
+    </div>
+  </div>
+</div>

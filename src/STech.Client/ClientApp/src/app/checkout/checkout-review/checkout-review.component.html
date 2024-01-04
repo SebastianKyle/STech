@@ -1,0 +1,41 @@
+<div class="place-order">
+  <h4>Your Order</h4>
+
+  <div class="order-total">
+    <ul class="order-table">
+      <li>
+        Product
+        <span>Total</span>
+      </li>
+
+      <!-- Order Items -->
+      <ng-container *ngIf="(cart$ | async) as cart">
+        <li *ngFor="let item of cart.cartItems" class="fw-normal">
+          <div>{{item.productName}}</div>
+          <i class="ltr-dir">x {{item.quantity}}</i> <span class="ltr-dir">{{item.price * item.quantity | currency}}</span>
+        </li>
+      </ng-container>
+
+      <li *ngIf="(cartTotal$ | async) as cartTotal" class="fw-normal">
+        Sub Total
+        <span class="ltr-dir">{{cartTotal.subTotal | currency}}</span>
+      </li>
+
+      <li *ngIf="(cartTotal$ | async) as cartTotal" class="fw-normal">
+        Shipping Charges
+        <span class="ltr-dir">{{cartTotal.shipping | currency}}</span>
+      </li>
+
+      <li *ngIf="(cartTotal$ | async) as cartTotal" class="total-price">
+        Total
+        <span class="ltr-dir">{{cartTotal.total | currency}}</span>
+      </li>
+
+    </ul>
+
+    <div class="my-2 small">
+      <i class="mr-5 fas fa-cart-arrow-down"></i>
+      <a class="text-info mt-3 text-capitalize" routerLink="/cart">Modify Cart Items Here</a>
+    </div>
+  </div>
+</div>

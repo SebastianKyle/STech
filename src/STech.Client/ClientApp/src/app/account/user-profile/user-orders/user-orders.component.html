@@ -1,0 +1,68 @@
+<div class="row mt-2">
+  <div class="col-md-12">
+    <form>
+      <div class="input-group mb-3">
+        <input #orderIDSearch type="text" class="form-control" placeholder="Order ID">
+        <select #orderStatusSearch class="form-control form-select">
+          <option value="0">Order Status</option>
+          <option [selected]="orderParams.orderStatus === status.value" *ngFor="let status of orderStatus" value="{{status.value}}">{{status.status}}</option>
+        </select>
+
+        <button (click)="searchOrders()" class="form-control btn btn-primary"><i class="fas fa-search mr-1"></i> Search</button>
+        <a (click)="resetOrders()" class="datalink text-white form-control btn btn-primary"><i class="fas fa-redo-alt mr-1"></i> Reset</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-lg-12">
+    <table *ngIf="userOrders && userOrders.length > 0" class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Order ID</th>
+          <th>Placed On Date</th>
+          <th>Order Amount</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let order of userOrders">
+          <td>{{order.id}}</td>
+          <td>{{order.placedOn}}</td>
+          <td class="ltr-dir">{{order.finalAmount | currency}}</td>
+          <td [class]="getOrderStatusConfig(order.orderHistory.orderStatus)?.bgClass">
+            <span>{{getOrderStatusConfig(order.orderHistory.orderStatus)?.status}}</span>
+            <br>
+            <div class="small">
+              Updated On: {{order.orderHistory.modifiedOn}}
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <a routerLink="/checkout/track" [queryParams]="{orderID: order.id}" class="btn btn-warning">
+                <i class="fas fa-search-location mr-1"></i> <!-- TODO: Build Track Order Component -->
+                Track
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-container *ngIf="userOrders.length > 0">
+      <app-pager
+        *ngIf="totalOrdersCount > orderParams.pageSize"
+        [pageSize]="this.orderParams.pageSize"
+        [pageIndex]="this.orderParams.pageIndex"
+        [totalCount]="this.totalOrdersCount"
+        (pageChanged)="onPageChanged($event)"
+      ></app-pager>
+    </ng-container>
+
+    <div *ngIf="userOrders.length === 0" class="alert alert-warning m-0" role="alert">
+      No orders found
+    </div>
+
+  </div>
+</div>

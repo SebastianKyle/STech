@@ -1,0 +1,54 @@
+<div class="register-login-section spad">
+  <div class="container" id="login-container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="login-form page-content-holder">
+          <div class="page-content-header">
+            <h2>Account Loggin</h2>
+          </div>
+
+          <!-- Login Partials -->
+          <form id="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="group-input">
+              <label for="Email">Email <span class="text-danger">*</span></label>
+              <input formControlName="email" type="email" id="Email" class="form-control" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+
+              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Email address is required
+              </div>
+
+              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['pattern']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Invalid email address
+              </div>
+            </div>
+
+            <div class="group-input">
+              <label for="Password">Password <span class="text-danger">*</span></label>
+              <input formControlName="password" type="password" id="Password" class="form-control" name="Password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']" class="alert alert-danger errorMessages mb-0 mt-1" role="alert">
+                Password is required
+              </div>
+            </div>
+
+            <div class="group-input errorsRow" style="display: none;">
+              <div class="alert alert-danger errorMessages mb-0" role="alert"></div>
+            </div>
+
+            <div class="group-input errorsRow" style="display: none;">
+              <div class="alert alert-danger errorMessages mb-0" role="alert">
+
+              </div>
+            </div>
+
+            <button type="submit" id="loginButton" class="site-btn login-btn">Login</button>
+          </form>
+
+          <div class="switch-login">
+            <a routerLink="/account/register" class="or-login">Or Register New Account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

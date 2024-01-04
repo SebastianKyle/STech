@@ -1,0 +1,283 @@
+<div class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text product-more">
+          <a routerLink="/">
+            <i class="fas fa-home mr-1"></i>
+            Home
+          </a>
+          <span>Tracking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="page-content-holder">
+          <div class="page-content-header">
+            <h2>Track Order</h2>
+            <p>You can check the status of your order. Please enter the order ID and you will get the information related to your order.</p>
+          </div>
+
+          <div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Order ID</span>
+                <input #trackOrderID type="text" class="form-control" placeholder="Enter Order ID to track">
+                <button (click)="getOrderDetails()" class="btn btn-primary">Track Order</button>
+              </div>
+          </div>
+
+          <div class="tracking-holder">
+            <div *ngIf="order" class="accordion" id="orderTrackingAccordion">
+              <div class="card">
+                <div class="card-header">
+                  <button class="btn btn-link no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#orderStatus">Order Status</button>
+                </div>
+
+                <div id="orderStatus" class="collapse show" data-bs-parent="#orderTrackingAccordion">
+                  <div class="card-body p-0">
+                    <table class="table table-borderless table-hover text-center mb-0">
+                      <tbody>
+                        <tr>
+                          <td style="width: 50%;">
+                            Order Status
+                          </td>
+
+                          <td style="width: 50%;">
+                            <h4 class="m-0">
+                              <span class="badge badge-secondary" [class]="getOrderStatusValue(order.orderHistory.orderStatus)?.bgClass">
+                                {{getOrderStatusValue(order.orderHistory.orderStatus)?.status}}
+                              </span>
+                            </h4>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td style="width: 50%;">
+                            Payment Method
+                          </td>
+
+                          <td style="width: 50%;">
+                            {{order.paymentMethod}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td style="width: 50%;">
+                            Date:
+                          </td>
+
+                          <td class="ltr-dir" style="width: 50%;">
+                            {{order.placedOn}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td style="width: 50%;">
+                            Updated On:
+                          </td>
+
+                          <td style="width: 50%;">
+                            {{order.orderHistory.modifiedOn}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td style="width: 50%;">
+                            Order ID:
+                          </td>
+
+                          <td style="width: 50%;">
+                            {{order.id}}
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#orderDetails">
+                      Order Details
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="orderDetails" class="collapse" data-bs-parent="#orderTrackingAccordion">
+                  <div class="card-body p-0">
+                    <table class="table table-hover m-0">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Item</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Total</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr *ngFor="let item of order.orderItems, index as i">
+                          <th>{{i + 1}}</th>
+                          <td>
+                            <a routerLink="/shop/{{item.productID}}" class="text-primary">{{item.productName}}</a>
+                          </td>
+
+                          <td>{{item.price | currency}}</td>
+                          <td>{{item.quantity}}</td>
+                          <td>{{item.price * item.quantity | currency}}</td>
+                        </tr>
+                      </tbody>
+
+                      <tfoot>
+                        <tr>
+                          <td colspan="4" class="txt-right">
+                            <strong>Sub Total</strong>
+                          </td>
+
+                          <td colspan="2">
+                            {{order.totalAmount | currency}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td colspan="4" class="txt-right">
+                            <strong>Shipping Charges</strong>
+                          </td>
+
+                          <td colspan="2">
+                            {{order.shippingPrice | currency}}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td colspan="4" class="txt-right">
+                            <strong>Final Total</strong>
+                          </td>
+
+                          <td colspan="2">
+                            {{order.finalAmount | currency}}
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#customerDetails">
+                      Contact Details
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="customerDetails" class="collapse" data-bs-parent="#orderTrackingAccordion">
+                  <div class="card-body">
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label txt-right">Customer Name</label>
+                      <div class="col-sm-10">
+                        <input name="FullName" type="text" class="form-control disabled" value="{{order.customerName}}" disabled>
+                      </div>
+                    </div>
+
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label txt-right">Customer Email</label>
+                      <div class="col-sm-10">
+                        <input name="Email" type="email" class="form-control disabled" value="{{order.customerEmail}}" disabled>
+                      </div>
+                    </div>
+
+                    <div class="form-group row mb-0">
+                      <label class="col-sm-2 col-form-label txt-right">Customer Phone</label>
+                      <div class="col-sm-10">
+                        <input name="PhoneNumber" type="text" class="form-control disabled" value="{{order.customerPhone}}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#shippingDetails">
+                      Shipping Details
+                    </button>
+                  </h2>
+                </div>
+                <div id="shippingDetails" class="collapse" data-bs-parent="#orderTrackingAccordion">
+                  <div class="card-body">
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label txt-right">Country</label>
+                      <div class="col-sm-10">
+                        <input name="Country" type="text" value="{{order.customerCountry}}" class="form-control disabled" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label txt-right">City</label>
+                      <div class="col-sm-10">
+                        <input name="City" type="text" value="{{order.customerCity}}" class="form-control disabled" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label txt-right">Address</label>
+                      <div class="col-sm-10">
+                        <textarea name="Address" class="form-control disabled" disabled>{{order.customerAddress}}</textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-0">
+                      <label class="col-sm-2 col-form-label txt-right">Zip Code</label>
+                      <div class="col-sm-10">
+                        <input name="ZipCode" type="text" value="{{order.customerZipCode}}" class="form-control disabled" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="orderHistories" class="card">
+                <div class="card-header">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#orderHistory">
+                      Order Histories
+                    </button>
+                  </h2>
+                </div>
+
+                <div *ngIf="orderHistories" id="orderHistory" class="collapse" data-bs-parent="#orderTrackingAccordion">
+                  <div class="card-body">
+                    <blockquote *ngFor="let history of orderHistories" class="blockquote">
+                      <p>
+                        <span class="badge badge-secondary" [class]="getOrderStatusValue(history.orderStatus)?.bgClass">
+                          {{getOrderStatusValue(history.orderStatus)?.status}}
+                        </span>
+                        - {{history.note}}
+                      </p>
+
+                      <footer class="blockquote-footer">{{history.modifiedOn}}</footer>
+                    </blockquote>
+
+                    <hr/>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
