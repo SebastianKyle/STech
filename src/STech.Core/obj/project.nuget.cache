@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jtTIiGtObX/T/MBNR/AkZIFXCA+cNQiVGe3BOpVMY7XCqg16yOw51xXYuVY9UHXLtzWXpdmbJfs1nf9fZBusRg==",
+  "dgSpecHash": "ymnmCzXloKwPP4SWj4x/9Q1xqTeBMV9jbHBgvDoXkh5s4w4M6mTgpgnig23w/EQAfi6HaDIM0vOql55wDu3meA==",
   "success": true,
-  "projectFilePath": "D:\\University\\NMCNPM\\SourceCode\\STech\\STech.Core\\STech.Core.csproj",
+  "projectFilePath": "D:\\University\\NMCNPM\\STech_Repo\\src\\STech.Core\\STech.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

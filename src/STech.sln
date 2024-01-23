@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STech.Infrastructure", "STe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STech.Client", "STech.Client\STech.Client.csproj", "{00E2393B-9477-4A8B-81A0-03DEB14B7516}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STech.Test", "STech.Test\STech.Test.csproj", "{662738CB-B770-407B-92D3-461EBF98DE07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{00E2393B-9477-4A8B-81A0-03DEB14B7516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00E2393B-9477-4A8B-81A0-03DEB14B7516}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00E2393B-9477-4A8B-81A0-03DEB14B7516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662738CB-B770-407B-92D3-461EBF98DE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662738CB-B770-407B-92D3-461EBF98DE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662738CB-B770-407B-92D3-461EBF98DE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662738CB-B770-407B-92D3-461EBF98DE07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

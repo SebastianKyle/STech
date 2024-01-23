@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
     {
         policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
         policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:44473");
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://5791-171-227-116-52.ngrok-free.app");
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://c05e-2a09-bac5-d46b-16c8-00-245-29.ngrok-free.app");
     });
 });
 

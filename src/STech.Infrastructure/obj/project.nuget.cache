@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ebtVBFvx5x6fwss9wkcmzPcYr5UPQ6ebyE0JGIEt3vRvCVA/5XQTJaBpgPVNORsUwTU0ISMu+++L5mMLzyaJbA==",
+  "dgSpecHash": "Ji7pt7lCzdmRjbeC0Z8j/IlxVP6jWqpc5t7xf0jt60FMphmwOcoCXqK6BhegCk6ccXm0Fgn07Gw6BpOja4AUeA==",
   "success": true,
-  "projectFilePath": "D:\\University\\NMCNPM\\SourceCode\\STech\\STech.Infrastructure\\STech.Infrastructure.csproj",
+  "projectFilePath": "D:\\University\\NMCNPM\\STech_Repo\\src\\STech.Infrastructure\\STech.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

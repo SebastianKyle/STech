@@ -10,3 +10,15 @@ D:\University\NMCNPM\SourceCode\STech\STech.Core\obj\Debug\net7.0\STech.Core.dll
 D:\University\NMCNPM\SourceCode\STech\STech.Core\obj\Debug\net7.0\refint\STech.Core.dll
 D:\University\NMCNPM\SourceCode\STech\STech.Core\obj\Debug\net7.0\STech.Core.pdb
 D:\University\NMCNPM\SourceCode\STech\STech.Core\obj\Debug\net7.0\ref\STech.Core.dll
+D:\University\NMCNPM\STech_Repo\src\STech.Core\bin\Debug\net7.0\STech.Core.deps.json
+D:\University\NMCNPM\STech_Repo\src\STech.Core\bin\Debug\net7.0\STech.Core.dll
+D:\University\NMCNPM\STech_Repo\src\STech.Core\bin\Debug\net7.0\STech.Core.pdb
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\STech.Core.csproj.AssemblyReference.cache
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\STech.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\STech.Core.AssemblyInfoInputs.cache
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\STech.Core.AssemblyInfo.cs
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\STech.Core.csproj.CoreCompileInputs.cache
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\STech.Core.dll
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\refint\STech.Core.dll
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\STech.Core.pdb
+D:\University\NMCNPM\STech_Repo\src\STech.Core\obj\Debug\net7.0\ref\STech.Core.dll

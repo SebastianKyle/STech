@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yzcfQ8EqSjx3x156cAlUftfHZP6um8jGNzx57TBYTRAWZ+fDLjb8dwMELoW4y6FDQvhUI3Fa9Sx8HvxRIzGJCQ==",
+  "dgSpecHash": "DCfpC1TslFQ5/8YBOlQud4ilr9RXltPM5QYin4FF8a6C3dy0EG/g2EDjutsAc47ecnERQbRiCOl6owImDqylnQ==",
   "success": true,
-  "projectFilePath": "D:\\University\\NMCNPM\\SourceCode\\STech\\STechAPI\\STechAPI.csproj",
+  "projectFilePath": "D:\\University\\NMCNPM\\STech_Repo\\src\\STechAPI\\STechAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

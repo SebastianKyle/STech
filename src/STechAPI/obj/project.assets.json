@@ -11687,11 +11687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\University\\NMCNPM\\SourceCode\\STech\\STechAPI\\STechAPI.csproj",
+      "projectUniqueName": "D:\\University\\NMCNPM\\STech_Repo\\src\\STechAPI\\STechAPI.csproj",
       "projectName": "STechAPI",
-      "projectPath": "D:\\University\\NMCNPM\\SourceCode\\STech\\STechAPI\\STechAPI.csproj",
+      "projectPath": "D:\\University\\NMCNPM\\STech_Repo\\src\\STechAPI\\STechAPI.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\University\\NMCNPM\\SourceCode\\STech\\STechAPI\\obj\\",
+      "outputPath": "D:\\University\\NMCNPM\\STech_Repo\\src\\STechAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -11712,11 +11712,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\University\\NMCNPM\\SourceCode\\STech\\STech.Core\\STech.Core.csproj": {
-              "projectPath": "D:\\University\\NMCNPM\\SourceCode\\STech\\STech.Core\\STech.Core.csproj"
+            "D:\\University\\NMCNPM\\STech_Repo\\src\\STech.Core\\STech.Core.csproj": {
+              "projectPath": "D:\\University\\NMCNPM\\STech_Repo\\src\\STech.Core\\STech.Core.csproj"
             },
-            "D:\\University\\NMCNPM\\SourceCode\\STech\\STech.Infrastructure\\STech.Infrastructure.csproj": {
-              "projectPath": "D:\\University\\NMCNPM\\SourceCode\\STech\\STech.Infrastructure\\STech.Infrastructure.csproj"
+            "D:\\University\\NMCNPM\\STech_Repo\\src\\STech.Infrastructure\\STech.Infrastructure.csproj": {
+              "projectPath": "D:\\University\\NMCNPM\\STech_Repo\\src\\STech.Infrastructure\\STech.Infrastructure.csproj"
             }
           }
         }
